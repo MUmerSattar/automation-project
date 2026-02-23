@@ -9,21 +9,25 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.Test;
 import umerlearning.AbstractComponents.AbstractComponent;
+import umerlearning.TestComponents.BaseTest;
 import umerlearning.pageobjects.*;
 
+import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
 
-public class SubmitOrderTest {
-    public static void main(String[] args) throws InterruptedException {
+public class SubmitOrderTest extends BaseTest {
+
+    @Test
+    public void Submitorder() throws InterruptedException, IOException {
 
 
         String productName = "ZARA COAT 3";
 
-        LandingPage landingPage = new LandingPage(driver);
-        landingPage.GoToLandingPage();
-        ProductCatalogue productCatalogue = landingPage.loginUser("fsd.cbd17@gmail.com","User1234");
+        LandingPage landingpage = launchApplication();
+        ProductCatalogue productCatalogue = landingpage.loginUser("fsd.cbd17@gmail.com","User1234");
 
         List<WebElement> products = productCatalogue.getProductsList();
         productCatalogue.addProductToCart(productName);

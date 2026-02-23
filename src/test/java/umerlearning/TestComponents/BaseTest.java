@@ -6,6 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import umerlearning.pageobjects.LandingPage;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -42,7 +43,10 @@ public class BaseTest {
         return driver;
     }
 
-    public void launchApplication(){
-
+    public LandingPage launchApplication() throws IOException {
+        driver = intializeDriver();
+        LandingPage landingPage = new LandingPage(driver);
+        landingPage.GoToLandingPage();
+        return landingPage;
     }
 }
