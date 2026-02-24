@@ -1,4 +1,4 @@
-package umerlearning.TestComponents;
+package TestComponents;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -6,6 +6,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import umerlearning.pageobjects.LandingPage;
 
 import java.io.FileInputStream;
@@ -16,6 +18,7 @@ import java.util.Properties;
 public class BaseTest {
 
     public WebDriver driver;
+    public LandingPage landingPage;
 
     public WebDriver intializeDriver() throws IOException {
         Properties prop =  new Properties();
@@ -43,10 +46,15 @@ public class BaseTest {
         return driver;
     }
 
-    public LandingPage launchApplication() throws IOException {
+    @BeforeMethod
+    public void launchApplication() throws IOException {
         driver = intializeDriver();
-        LandingPage landingPage = new LandingPage(driver);
+        landingPage = new LandingPage(driver);
         landingPage.GoToLandingPage();
-        return landingPage;
+    }
+
+    @AfterMethod
+    public void TearDown() {
+        driver.close();
     }
 }

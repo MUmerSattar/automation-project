@@ -8,7 +8,8 @@ import umerlearning.AbstractComponents.AbstractComponent;
 
 public class LandingPage extends AbstractComponent {
     WebDriver driver;
-    public LandingPage(WebDriver driver) {
+    public LandingPage(WebDriver driver)
+    {
         super(driver);
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -21,6 +22,9 @@ public class LandingPage extends AbstractComponent {
     @FindBy(id="login")
     WebElement loginClick;
 
+    @FindBy(css="[class*='flyInOut']")
+    WebElement errorMessage;
+
     public ProductCatalogue loginUser(String email, String password)
     {
         mail.sendKeys(email);
@@ -29,6 +33,12 @@ public class LandingPage extends AbstractComponent {
         ProductCatalogue productCatalogue =  new ProductCatalogue(driver);
         return productCatalogue;
     }
+
+    public String getErrorMessage(){
+        waitForWebElementToAppear(errorMessage);
+        return errorMessage.getText();
+    }
+
 
     public void GoToLandingPage()
     {
