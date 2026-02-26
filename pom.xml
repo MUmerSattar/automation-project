@@ -12,13 +12,22 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <!-- Force Java compatibility without using javac internals -->
+    <maven.compiler.release>21</maven.compiler.release>
   </properties>
 
   <dependencies>
+<!--    <dependency>-->
+<!--      <groupId>junit</groupId>-->
+<!--      <artifactId>junit</artifactId>-->
+<!--      <version>3.8.1</version>-->
+<!--      <scope>test</scope>-->
+<!--    </dependency>-->
+    <!-- Source: https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>6.1.0-M1</version>
       <scope>test</scope>
     </dependency>
 
@@ -26,7 +35,7 @@
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
-      <version>4.40.0</version>
+      <version>4.41.0</version>
       <scope>compile</scope>
     </dependency>
     <!-- Source: https://mvnrepository.com/artifact/org.testng/testng -->
@@ -44,6 +53,21 @@
       <scope>compile</scope>
     </dependency>
 
+    <!-- Source: https://mvnrepository.com/artifact/tools.jackson.core/jackson-databind -->
+    <dependency>
+      <groupId>tools.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>3.1.0</version>
+      <scope>compile</scope>
+    </dependency>
+    <!-- Source: https://mvnrepository.com/artifact/com.aventstack/extentreports -->
+    <dependency>
+      <groupId>com.aventstack</groupId>
+      <artifactId>extentreports</artifactId>
+      <version>5.1.2</version>
+      <scope>compile</scope>
+    </dependency>
+
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
@@ -52,14 +76,7 @@
   </dependencies>
   <build>
     <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>19</source>
-          <target>19</target>
-        </configuration>
-      </plugin>
+      <!-- empty is fine -->
     </plugins>
   </build>
 </project>

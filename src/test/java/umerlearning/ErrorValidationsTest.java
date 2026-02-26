@@ -1,6 +1,8 @@
 package umerlearning;
 
 import TestComponents.BaseTest;
+import com.aventstack.extentreports.reporter.ExtentReporter;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -12,11 +14,10 @@ import java.util.List;
 
 public class ErrorValidationsTest extends BaseTest {
 
-    @Test
+    @Test(groups = {"ErrorHandling"})
     public void LoginErrorValidation() throws InterruptedException, IOException {
-
         landingPage.loginUser("fsd.cbd20@gmail.com","User123456");
-        Assert.assertEquals(landingPage.getErrorMessage(), "Incorrect email or password.");
+        Assert.assertEquals(landingPage.getErrorMessage(), "Incorrect email and password.");
         System.out.println(landingPage.getErrorMessage());
     }
 
