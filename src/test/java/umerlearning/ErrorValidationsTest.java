@@ -1,8 +1,6 @@
 package umerlearning;
 
 import TestComponents.BaseTest;
-import com.aventstack.extentreports.reporter.ExtentReporter;
-import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -25,7 +23,6 @@ public class ErrorValidationsTest extends BaseTest {
     public void ProductErrorValidation() throws InterruptedException, IOException {
         String productName = "ZARA COAT 3";
         ProductCatalogue productCatalogue = landingPage.loginUser("fsd.cbd16@gmail.com","User1234");
-        List<WebElement> products = productCatalogue.getProductsList();
         productCatalogue.addProductToCart(productName);
         CartPage cartPage = productCatalogue.GoToCartPage();
         boolean match = cartPage.VerifyProductDisplay("ZARA COAT 33");

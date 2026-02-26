@@ -1,16 +1,12 @@
 package umerlearning;
 
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
+
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import TestComponents.BaseTest;
 import umerlearning.pageobjects.*;
-
-import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -22,7 +18,6 @@ public class SubmitOrderTest extends BaseTest {
     public void Submitorder(HashMap<String,String> input) throws InterruptedException, IOException {
 
         ProductCatalogue productCatalogue = landingPage.loginUser(input.get("email"),input.get("password"));
-        List<WebElement> products = productCatalogue.getProductsList();
         productCatalogue.addProductToCart(input.get("product"));
         CartPage cartPage = productCatalogue.GoToCartPage();
         boolean match = cartPage.VerifyProductDisplay(input.get("product"));
