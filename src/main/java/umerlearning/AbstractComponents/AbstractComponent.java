@@ -29,6 +29,7 @@ public class AbstractComponent {
 
     public CartPage GoToCartPage()
     {
+        waitForWebElementToAppear(GoToCartButton);
         GoToCartButton.click();
         CartPage cartPage = new CartPage(driver);
         return cartPage;
@@ -36,7 +37,7 @@ public class AbstractComponent {
 
     public OrderPage GoToOrderPage()
     {
-        waitForWebElementToAppear(GoToOrderButton);
+        waitForWebElementToClickable(GoToOrderButton);
         GoToOrderButton.click();
         OrderPage orderPage = new OrderPage(driver);
         return orderPage;
@@ -59,6 +60,12 @@ public class AbstractComponent {
     {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.invisibilityOf(ele));
+    }
+
+    public void waitForWebElementToClickable(WebElement locator)
+    {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
 }

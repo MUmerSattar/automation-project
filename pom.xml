@@ -14,6 +14,8 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <!-- Force Java compatibility without using javac internals -->
     <maven.compiler.release>21</maven.compiler.release>
+      <maven.compiler.souce>1.8</maven.compiler.souce>
+      <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
 
   <dependencies>
@@ -74,9 +76,79 @@
       <version>2.0.13</version>
     </dependency>
   </dependencies>
+    <!-- This is for Regression/testng.xml file to run -->
+    <profiles>
+        <profile>
+            <id>Regression</id>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-surefire-plugin</artifactId>
+                            <version>3.0.0-M4</version> <!-- Use a recent version -->
+                            <configuration>
+                                <suiteXmlFiles>
+                                    <suiteXmlFile>testSuites/testng.xml</suiteXmlFile>
+                                </suiteXmlFiles>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
+        <!-- This is for Purchase.xml file to run -->
+        <profile>
+            <id>Purchase</id>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-surefire-plugin</artifactId>
+                            <version>3.0.0-M4</version> <!-- Use a recent version -->
+                            <configuration>
+                                <suiteXmlFiles>
+                                    <suiteXmlFile>testSuites/Purchase.xml</suiteXmlFile>
+                                </suiteXmlFiles>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
+        <!-- This is for ErrorValidationTestng.xml file to run -->
+        <profile>
+            <id>ErrorValidation</id>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-surefire-plugin</artifactId>
+                            <version>3.0.0-M4</version> <!-- Use a recent version -->
+                            <configuration>
+                                <suiteXmlFiles>
+                                    <suiteXmlFile>testSuites/ErrorValidationtestng.xml</suiteXmlFile>
+                                </suiteXmlFiles>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
+    </profiles>
   <build>
     <plugins>
-      <!-- empty is fine -->
-    </plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.0.0-M4</version> <!-- Use a recent version -->
+            <configuration>
+                <suiteXmlFiles>
+                    <suiteXmlFile>testSuites/testng.xml</suiteXmlFile>
+                </suiteXmlFiles>
+            </configuration>
+        </plugin>    </plugins>
   </build>
 </project>

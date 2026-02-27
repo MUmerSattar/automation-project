@@ -1,6 +1,7 @@
 package umerlearning;
 
 import TestComponents.BaseTest;
+import TestComponents.Retry;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -12,10 +13,10 @@ import java.util.List;
 
 public class ErrorValidationsTest extends BaseTest {
 
-    @Test(groups = {"ErrorHandling"})
+    @Test(groups = {"ErrorHandling"},retryAnalyzer = Retry.class)
     public void LoginErrorValidation() throws InterruptedException, IOException {
         landingPage.loginUser("fsd.cbd20@gmail.com","User123456");
-        Assert.assertEquals(landingPage.getErrorMessage(), "Incorrect email and password.");
+        Assert.assertEquals(landingPage.getErrorMessage(), "Incorrect email maybe password.");
         System.out.println(landingPage.getErrorMessage());
     }
 
@@ -25,8 +26,8 @@ public class ErrorValidationsTest extends BaseTest {
         ProductCatalogue productCatalogue = landingPage.loginUser("fsd.cbd16@gmail.com","User1234");
         productCatalogue.addProductToCart(productName);
         CartPage cartPage = productCatalogue.GoToCartPage();
-        boolean match = cartPage.VerifyProductDisplay("ZARA COAT 33");
-        Assert.assertFalse(match);
+        boolean match = cartPage.VerifyProductDisplay("ZARA COAT 3");
+        Assert.assertTrue(match);
 
     }
 }

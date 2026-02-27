@@ -19,7 +19,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
@@ -33,7 +35,7 @@ public class BaseTest {
         Properties prop =  new Properties();
         FileInputStream input = new FileInputStream(System.getProperty("user.dir")+"//src//main//java//umerlearning//resources//GlobalData.properties");
         prop.load(input);
-        String browserName = prop.getProperty("browser");
+        String browserName = System.getProperty("browser")!=null ? System.getProperty("browser"): prop.getProperty("browser");
 
         if (browserName.equalsIgnoreCase("chrome")) {
             WebDriverManager.chromedriver().setup();
@@ -71,11 +73,13 @@ public class BaseTest {
         File source = ts.getScreenshotAs(OutputType.FILE);
         String reportDir = System.getProperty("user.dir") + File.separator + "reports";
         new File(reportDir).mkdirs();
+        String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
 
-        String destinationPath = reportDir + File.separator + testCaseName + ".png";
+
+        String destinationPath = reportDir + File.separator + testCaseName +"_"+ timestamp+ ".png";
         File destinationPathFile = new File(destinationPath);
         FileUtils.copyFile(source,destinationPathFile);
-        return testCaseName+".png";
+        return testCaseName+"_"+ timestamp+".png";
     }
 
 
