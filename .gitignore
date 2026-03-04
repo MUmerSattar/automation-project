@@ -37,15 +37,3 @@ build/
 
 ### Mac OS ###
 .DS_Store
-# IntelliJ
-.idea/
-
-
-
-# Logs
-*.log
-
-
-# Selenium / Reports (if any)
-test-output/
-allure-results/

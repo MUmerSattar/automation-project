@@ -75,6 +75,21 @@
       <artifactId>slf4j-simple</artifactId>
       <version>2.0.13</version>
     </dependency>
+
+      <!-- Source: https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
+      <dependency>
+          <groupId>io.cucumber</groupId>
+          <artifactId>cucumber-java</artifactId>
+          <version>7.34.2</version>
+          <scope>compile</scope>
+      </dependency>
+      <!-- Source: https://mvnrepository.com/artifact/io.cucumber/cucumber-testng -->
+      <dependency>
+          <groupId>io.cucumber</groupId>
+          <artifactId>cucumber-testng</artifactId>
+          <version>7.34.2</version>
+          <scope>compile</scope>
+      </dependency>
   </dependencies>
     <!-- This is for Regression/testng.xml file to run -->
     <profiles>
