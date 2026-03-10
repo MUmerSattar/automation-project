@@ -21,6 +21,9 @@ public class AbstractComponent {
     @FindBy(xpath = "//button[@routerlink='/dashboard/myorders']")
     WebElement GoToOrderButton;
 
+    @FindBy(css = ".ngx-spinner-overlay")
+    WebElement spinner;
+
     public AbstractComponent(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -29,7 +32,7 @@ public class AbstractComponent {
 
     public CartPage GoToCartPage()
     {
-        waitForWebElementToAppear(GoToCartButton);
+        waitForElementToDisappear(spinner);
         GoToCartButton.click();
         CartPage cartPage = new CartPage(driver);
         return cartPage;
@@ -37,7 +40,7 @@ public class AbstractComponent {
 
     public OrderPage GoToOrderPage()
     {
-        waitForWebElementToClickable(GoToOrderButton);
+        waitForElementToDisappear(spinner);
         GoToOrderButton.click();
         OrderPage orderPage = new OrderPage(driver);
         return orderPage;

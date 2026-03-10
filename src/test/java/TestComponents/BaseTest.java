@@ -9,7 +9,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -49,14 +51,24 @@ public class BaseTest {
             driver.manage().window().setSize(new Dimension(1440,900));
 
         }
-        else if(browserName.equalsIgnoreCase("firefox")){
+        else if(browserName.contains("firefox")){
+            FirefoxOptions options = new FirefoxOptions();
             WebDriverManager.firefoxdriver().setup();
+            if(browserName.contains("headless")){
+                options.addArguments("headless");
+            }
             driver = new FirefoxDriver();
+            driver.manage().window().setSize(new Dimension(1440,900));
 
         }
-        else if(browserName.equalsIgnoreCase("edge")){
+        else if(browserName.contains("edge")){
+            EdgeOptions options = new EdgeOptions();
             WebDriverManager.edgedriver().setup();
+            if(browserName.contains("headless")){
+                options.addArguments("headless");
+            }
             driver = new EdgeDriver();
+            driver.manage().window().setSize(new Dimension(1440,900));
 
         }
         driver.manage().window().maximize();
